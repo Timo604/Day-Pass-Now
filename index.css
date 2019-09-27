@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+  }
+  
+  p{
+    color: blue;
+  }
+  p.subtitle{
+    color: black;
+  }
+  
+  body{
+    background: linear-gradient(to top, #2980b9, #2c3e50);
+  }
+  .wrapper{
+    display: grid;
+    grid-template-columns: 200px repeat(4, auto);
+    grid-template-rows: repeat(7, auto) 500px;
+    grid-template-areas: 
+    "logo head head head head "
+    "table table input input input"
+    "table table map map map"
+    "table table map map map"
+    "table table map map map"
+    "foot foot foot foot foot"
+    ". . . . ."
+    
+  }
+  img{
+    grid-area: logo;
+    max-width: 200px;
+    min-height: 200px;
+  }
+  header{
+    grid-area: head;
+    border: 1px solid black;
+    text-align: center;
+  }
+ 
+  .inputs{
+    grid-area: input;
+    padding: 5px;
+    border: 1px solid black;
+    justify-items: auto;  
+  }
+
+  .map{
+    margin: 0px;
+    grid-area: map;
+    border: 1px solid red;
+    padding: 100px;
+    align-items: center;    
+  }
+  
+  .table{
+    overflow-y: scroll;
+    grid-area: table;
+    border: 1px solid purple;
+    height: 100%;
+    width: 100%
+    }
+
+    
+  footer{
+    grid-area: foot;
+    border: 1px solid black;
+    justify-content: center;
+  }
+  
+  

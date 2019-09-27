@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel = "stylesheet" type = "text/css" href = "index.css"/>
+  <script src ='index.js'></script>
+</head>
+
+<body>
+<div class = wrapper>
+  <a href = "index.html">
+      <img src = "temp_logo.jpg">
+  </a>
+
+<header class="hd">
+<h1>
+Day Pass Now
+</h1>
+<p class="subtitle">
+Enter location & distance to find gyms with day passes 
+</p>
+</header>
+ <div class ="inputs">
+  <input type = "search"  name = "location" value= "Location">
+  <input type = button  value = "current location">
+  <select name="distance">
+    <option>1 mile</option>
+    <option>3 miles</option>
+    <option>5 miles</option>
+    <option>10 miles</option>
+   </select>
+  </div>
+  <p class ="map">
+  MAP PLACEHOLDER -- google maps API
+  </p>
+  <div class = table>
+  <table class = 'gyms'>
+      <tr>
+        <th> Gyms </th>
+      </tr>
+      <tr>
+        <td> Table of results (name, $)</td>
+        <td ><input type = button value = "more info" id = 'info1'></td>
+       </tr>
+       <tr>
+         <td id="gym1" style="display: none">
+            Distance: .5 miles Hours: 0500-2200
+        </td>
+        </tr>
+        <tr>
+        <td id="gym2">Gym 2</td>
+        <td><input type = button value = "more info" id = 'info2'></td>
+        </tr>
+        <tr>
+          <td style="display: none">Hours: ...</td>
+        </tr>
+        <tr>
+        <td id="gym3">Gym 3</td>
+        <td><input type = button value = "more info" id = 'info3'></td>
+        </tr>
+        <tr>
+          <td style="display: none">Hours: ...</td>
+        </tr>
+      </table>
+    </div>
+<footer>
+  <p.subtitle>Created by Tim Lutz - Last updated: 24 Sep 19</p>
+</footer>
+
+</div>
+</body>
+</html>
