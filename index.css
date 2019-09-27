@@ -9,21 +9,21 @@
     color: black;
   }
   
-  body{
+  /*body{
     background: linear-gradient(to top, #2980b9, #2c3e50);
-  }
+  }*/
   .wrapper{
     display: grid;
-    grid-template-columns: 200px repeat(4, auto);
-    grid-template-rows: repeat(7, auto) 500px;
+    grid-template-columns: 200px repeat(3, auto) 200px;
+    grid-template-rows: 200px 50px repeat(3, 200px) 100px;
+    gap: 10px;
     grid-template-areas: 
-    "logo head head head head "
-    "table table input input input"
-    "table table map map map"
-    "table table map map map"
-    "table table map map map"
-    "foot foot foot foot foot"
-    ". . . . ."
+    "logo head head head . "
+    ".     .   input input ."
+    "table table map map ."
+    "table table map map ."
+    "table table map map ."
+    "foot foot foot foot ."
     
   }
   img{
@@ -37,12 +37,30 @@
     text-align: center;
   }
  
-  .inputs{
+  form{
     grid-area: input;
     padding: 5px;
     border: 1px solid black;
-    justify-items: auto;  
+    justify-self: center;
+    align-self: end;
   }
+  /*For location search bar*/
+  .ls{
+    margin-left: 10px;
+    width: 220px;
+  }
+
+  /*For curremt location button*/
+  .cl{
+    margin-right: 10px;
+    }
+
+  /*For distance radius menu*/
+  .dis{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
 
   .map{
     margin: 0px;
