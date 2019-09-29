@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    border-radius: 5px;
   }
   
   p{
@@ -39,25 +40,27 @@
  
   form{
     grid-area: input;
-    padding: 5px;
+    padding: 7px 20px;
+    margin: 0px;
     border: 1px solid black;
     justify-self: center;
     align-self: end;
+    
   }
   /*For location search bar*/
   .ls{
-    margin-left: 10px;
-    width: 220px;
+    margin-left: 0px;
   }
 
   /*For curremt location button*/
   .cl{
-    margin-right: 10px;
+    margin-left:10px;
+    margin-right: 60px;
     }
 
   /*For distance radius menu*/
   .dis{
-    margin-left: 10px;
+    margin-left: 60px;
     margin-right: 10px;
   }
   
