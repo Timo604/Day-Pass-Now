@@ -7,10 +7,7 @@
 
 <body>
 <div class = wrapper>
-  <a href = "index.html">
-      <img src = "temp_logo.jpg">
-  </a>
-
+    
 <header class="hd">
 <h1>
 Day Pass Now
@@ -22,6 +19,7 @@ Enter location & distance to find gyms with day passes
  <form>
   <input class = "ls" type = "search"  name = "location" value= "Location" style= "width: 200px">
   <input class = "cl" type = button  value = "current location">
+  <span class = "label" >Within: </span>
   <select class = "dis" name="distance">
     <option>1 mile</option>
     <option>3 miles</option>
@@ -32,7 +30,7 @@ Enter location & distance to find gyms with day passes
   <p class ="map">
   MAP PLACEHOLDER -- google maps API
   </p>
-  <div class = table>
+  <div class = "tab">
   <table class = 'gyms'>
       <tr>
         <th> Gyms </th>
