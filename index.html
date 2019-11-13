@@ -2,15 +2,11 @@
 <html>
 <head>
   <link rel = "stylesheet" type = "text/css" href = "index.css"/>
-  <script src ='index.js'></script>
 </head>
 
 <body>
 <div class = wrapper>
-  <a href = "index.html">
-      <img src = "temp_logo.jpg">
-  </a>
-
+    
 <header class="hd">
 <h1>
 Day Pass Now
@@ -19,53 +15,36 @@ Day Pass Now
 Enter location & distance to find gyms with day passes 
 </p>
 </header>
- <div class ="inputs">
-  <input type = "search"  name = "location" value= "Location">
-  <input type = button  value = "current location">
-  <select name="distance">
-    <option>1 mile</option>
+ <form>
+  <input id = "ls" value= "Location">
+  <input id = "cl" type = button  value = "Current Location">
+  <span id = "label" >Within: </span>
+  <select id = "dis" name="distance">
     <option>3 miles</option>
     <option>5 miles</option>
     <option>10 miles</option>
    </select>
-  </div>
+   <input id = "find" type = button value = "Find Gyms">
+  </form>
+  <nav>
+    <ul id = "links">
+    <li>Most Common Gyms</li>
+    <li class = "link"><a href="https://www.anytimefitness.com/">Anytime Fitness</a></li>
+    <li class = "link"><a href="https://www.planetfitness.com/">Planet Fitness</a> </li>
+    <li class = "link"><a href="https://www.snapfitness.com/us/">Snap Fitness</a> </li>
+    <li class = "link"><a href="https://www.orangetheoryfitness.com/">Orange Theory</a> </li>
+    <li class = "link"><a href="https://www.lafitness.com/">LA Fitness</a> </li>
+  </ul>
+  </nav>
   <p class ="map">
   MAP PLACEHOLDER -- google maps API
   </p>
-  <div class = table>
-  <table class = 'gyms'>
-      <tr>
-        <th> Gyms </th>
-      </tr>
-      <tr>
-        <td> Table of results (name, $)</td>
-        <td ><input type = button value = "more info" id = 'info1'></td>
-       </tr>
-       <tr>
-         <td id="gym1" style="display: none">
-            Distance: .5 miles Hours: 0500-2200
-        </td>
-        </tr>
-        <tr>
-        <td id="gym2">Gym 2</td>
-        <td><input type = button value = "more info" id = 'info2'></td>
-        </tr>
-        <tr>
-          <td style="display: none">Hours: ...</td>
-        </tr>
-        <tr>
-        <td id="gym3">Gym 3</td>
-        <td><input type = button value = "more info" id = 'info3'></td>
-        </tr>
-        <tr>
-          <td style="display: none">Hours: ...</td>
-        </tr>
-      </table>
-    </div>
+  <section class = "gym-output">
+  </section>
 <footer>
-  <p.subtitle>Created by Tim Lutz - Last updated: 24 Sep 19</p>
+  <p.subtitle>Created by Tim Lutz - Last updated: 28 Oct 19</p>
 </footer>
-
 </div>
 </body>
+<script src ='index.js'></script>
 </html>
