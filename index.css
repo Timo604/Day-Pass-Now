@@ -12,16 +12,19 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
 }
 .wrapper{
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: .5fr .5fr repeat(5, 1fr);
+  grid-template-columns: 1fr repeat(3, 2fr) 1fr;
+  grid-template-rows: 1fr .5fr repeat(5, 1fr) .5fr;
   gap: 10px;
   grid-template-areas: 
-  "head head  input input input"
-  "head head  map  map  map "
-  "table table map   map   map"
-  "table table map map   map "
-  "table table nav nav nav"
-  "foot foot foot foot foot"
+  "head head  head  head head"
+  ". input input input ."
+  ". map   map   map ."
+  ". map   map   map ."
+  "nav map   map   map ."
+  "nav table table table ."
+  ". table table table ."
+  ". foot foot foot ."
+  
 }
 
 header{
@@ -85,19 +88,22 @@ nav{
   color: #EFF2ED;
   background-color: #5C5CE8;
 }
-li
-{
-  display: inline;
-}
 #links{
   list-style-type: none;
+  justify-content: left;
+  padding: 5px;
 }
 .link a{
+  display: block;
+  width: 1fr;
+  padding: 8px 16px;
   color: #EFF2ED;
 }
 .link a:hover{
-  display: inline;
+  display: block;
   background-color: #66C3FF;
+  width: 1fr;
+  padding: 8px 16px;
 }
 
 .gym-output{
