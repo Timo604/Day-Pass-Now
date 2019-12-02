@@ -60,5 +60,15 @@ function findGyms(){
      }
      console.log("gyms cleared");
  }
+
+ function initMap(){
+     //location of Chicago
+     var chicago = {lat: 41.8781, lng: -87.6298};
+     //the map, centered on Chicago
+     var map = new google.maps.Map(
+         document.getElementById('map'), {zoom: 4, center: chicago});
+    var marker = new google.maps.Marker({position: chicago, map: map});
+ }
+
  //on start-up
  findGyms();

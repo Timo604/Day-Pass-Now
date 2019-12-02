@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel = "stylesheet" type = "text/css" href = "index.css"/>
+  
 </head>
 
 <body>
@@ -36,15 +37,16 @@ Enter location & distance to find gyms with day passes
     <li class = "link"><a href="https://www.lafitness.com/">LA Fitness</a> </li>
   </ul>
   </nav>
-  <p class ="map">
-  MAP PLACEHOLDER -- google maps API
-  </p>
+  <div id ="map"></div>
   <section class = "gym-output">
   </section>
 <footer>
-  <p.subtitle>Created by Tim Lutz - Last updated: 28 Oct 19</p>
+  <p.subtitle>Created by Tim Lutz - Last updated: 01 Oct 19</p>
 </footer>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 <script src ='index.js'></script>
+<script async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDueDNPRDxUx0PR3fC08vmq0VkTP8mkz14&callback=initMap">
+</script>
 </html>
