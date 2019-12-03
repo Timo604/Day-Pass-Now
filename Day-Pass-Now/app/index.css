@@ -75,7 +75,7 @@ form{
   cursor: pointer;
 }
 
-.map{
+#map{
   margin: 0px;
   grid-area: map;
   border: 1px solid red;
