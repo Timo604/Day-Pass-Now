@@ -106,17 +106,17 @@ nav{
   padding: 8px 16px;
 }
 
-.gym-output{
+#gym-output{
   overflow-y: scroll;
   grid-area: table;
   color: #EFF2ED;
   background-color: #5C5CE8;
   box-shadow: 3px 3px 3px #363732;
   }
-.gym-output p:nth-child(even){
+#gym-output p:nth-child(even){
   background-color: #3A3AF2;
 }
-.gym-output p:hover{
+#gym-output p:hover{
   background-color: #66C3FF;
 }
   
