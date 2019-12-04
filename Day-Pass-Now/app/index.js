@@ -14,7 +14,8 @@ function findGyms(){
  //variables for google APIs
  var geocoder;
  var location;
- var map;
+ var map, infoWindow;
+ var service;
 
 
  var data;
@@ -32,22 +33,49 @@ function findGyms(){
  currentLocBtn.addEventListener('click', () =>{
      console.log('current locaiton button clicked');
      //set value of locationInput
-     locationInput.value = 'current location';
+     locationInput.value = getCurrentLocation();
  })
  
  //event listener on find gyms button
  findGymBtn.addEventListener('click', async function(){
     console.log('find button clicked');
-    var radius = document.getElementById("dis").value * 1609.34 //approximate miles to meters conversion
+    var radius = document.getElementById("dis").value * 1609.34; //approximate miles to meters conversion
     //get latitude and longitude object 
-    $.post("places", {'adr': locationInput.value, 'rad': String(radius)}, function(response){
-    places = response;
-    console.log("places posted");
-    }).then(displayGyms(places));    
-    });  
+    codeAddress(locationInput.value)
+    .then((location)=> {
+        var request = {
+        query: 'Gyms',
+        fields: ['place_id'],
+        locationBias: {radius: radius, center: location}};
+        let service = new google.maps.places.PlacesService(document.getElementById("map"));
+        service.findPlaceFromQuery(request, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var places = results;
+            return places;
+        }
+      });})
+      .then((places) => {
+        var Places = [];
+          $.each(places, function(value){
+            var requestD = {
+                placeId: value.place_id,
+                fields: ['name', 'website', 'formatted_address']
+            }
+           
+            service.getDetails(requestD, function(result, status){
+                if(status == google.maps.places.PlacesServiceStatus.OK)
+                    Places.push(result);
+            })
+            })
+            if(Places != undefined){
+                return Places;
+            }
+        }
+      ).then((Places) => displayGyms(Places));
+ })
 
 
-/*function codeAddress(adr){
+function codeAddress(adr){
     console.log(adr);
     return new Promise((resolve, reject) => {
         geocoder = new google.maps.Geocoder();
@@ -63,39 +91,85 @@ function findGyms(){
             }
         });
     }); 
-    }*/
-  
- 
- //event lsitener for enter key
- //currently displays for split second then page refreshes
- /*locationInput.addEventListener('keypress', (e) => {
-     //check key pressed by code - 13 - return
-     if(e.keyCode === 13)
-     {
-         console.log("enter pressed");
-         displayGyms(locationInput.value, document.getElementById("dis").value, gymOutput);
-     }
- })*/
- 
- 
- function displayGyms(p){
-    var gymOutput = document.getElementById('gym-output');
-     clearGyms(gymOutput);
-     $.each(p, ()=>{
-        $.post("details", this, function(response){
-        detailed = response;
-        console.log(detailed);
-
-        //create p node
-        let p = document.createElement('p');
-        //text is the location input value
-        let locationText = document.createTextNode(detailed.name + " is within " + document.getElementById("dis").value +  " of " + locationInput.value);
-        //append the location text
-        p.appendChild(locationText);
-        gymOutput.appendChild(p);
-        }); 
-     });
     }
+
+    function getCurrentLocation(){
+     // Try HTML5 geolocation.
+     if (navigator.geolocation) {
+         var pos;
+          //initialize infowindow
+        infoWindow = new google.maps.InfoWindow;
+        navigator.geolocation.getCurrentPosition(function(position) {
+          pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('Location found.');
+          infoWindow.open(map);
+          map = new google.maps.Map(
+            document.getElementById('map'), {
+            zoom: 4, 
+            center: {lat: 41.8781, lng: -87.6298},
+            fullscreenControl: false,
+            streetViewControl: false});
+          map.setCenter(pos);
+        }, function() {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+      return geocodeLatLng(pos)
+    }
+
+    function geocodeLatLng(position) {
+        var latlng = position;
+        geocoder = new google.maps.Geocoder();
+         //initialize infowindow
+        infoWindow = new google.maps.InfoWindow;
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              return results[0].formatted_address;
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ?
+                            'Error: The Geolocation service failed.' :
+                            'Error: Your browser doesn\'t support geolocation.');
+      infoWindow.open(map);
+    }
+}
+ 
+ 
+ function displayGyms(Pl){
+    var gymOutput = document.getElementById('gym-output');
+    clearGyms(gymOutput);
+
+    $.each(Pl, function(item){
+        name = item.name;
+        adr = item.formated_address;
+        website = itme.website
+         //create a node
+        let a = document.createElement('a');
+        //text is the location input value
+        let locationText = document.createTextNode(name + "is nearby at " + adr);
+        //append the location text
+        a.appendChild(locationText);
+        a.setAttribute('href', website)
+        gymOutput.appendChild(a);
+    })
+}
      
  
  
@@ -107,7 +181,7 @@ function findGyms(){
      }
      console.log("gyms cleared");
  }
-}
+
 
  function initMap(){
     //initializes map and places once the api is loaded -- callback function
@@ -116,7 +190,7 @@ function findGyms(){
     //the map, centered on Chicago as default
     map = new google.maps.Map(
         document.getElementById('map'), {
-        zoom: 4, 
+        zoom: 6, 
         center: chicago,
         fullscreenControl: false,
         streetViewControl: false});
@@ -131,3 +205,16 @@ function findGyms(){
 
  //on start-up
  findGyms();
+
+
+
+ //event lsitener for enter key
+ //currently displays for split second then page refreshes
+ /*locationInput.addEventListener('keypress', (e) => {
+     //check key pressed by code - 13 - return
+     if(e.keyCode === 13)
+     {
+         console.log("enter pressed");
+         displayGyms(locationInput.value, document.getElementById("dis").value, gymOutput);
+     }
+ })*/

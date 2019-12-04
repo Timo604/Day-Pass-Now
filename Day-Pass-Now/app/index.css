@@ -1,41 +1,39 @@
 *{
   box-sizing: border-box;
   border-radius: 5px;
+  color: #fff2df;
  
   
 }
 
 body{
-background: #E0EAFC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: #fff2df;
+
 }
 .wrapper{
   display: grid;
   grid-template-columns: 1fr repeat(3, 2fr) 1fr;
-  grid-template-rows: 1fr .5fr repeat(5, 1fr) .5fr;
+  grid-auto-rows: 100px;
   gap: 10px;
   grid-template-areas: 
-  "head head  head  head head"
-  ". input input input ."
-  ". map   map   map ."
-  ". map   map   map ."
-  "nav map   map   map ."
-  "nav table table table ."
-  ". table table table ."
+  "head head input input input "
+  "table table map map map"
+  "table table map   map map"
+  "table table map   map map"
+  "table table map   map map"
+  ". nav nav nav ."
   ". foot foot foot ."
   
 }
 
 header{
   grid-area: head;
-  color: #EFF2ED;
-  background-color: #5C5CE8;
+  
+  background-color: #a2836e;
   border-radius: 0px;
   text-align: center;
-  box-shadow: 2px 2px 2px #363732;
-  text-shadow: 1px 1px 2px #DBDDD9;
-  font-size: 120%;
+  box-shadow: 2px 2px 2px #674d3c;
+  font-size: 100%;
 }
 .subtitle{
   box-shadow: none;
@@ -46,85 +44,142 @@ form{
   grid-area: input;
   padding: 7px 20px;
   margin: 0px;
-  border: 1px solid black;
+  border: 1px solid #a2836e;
   text-align: center;
-  align-self: end;
-  color: #EFF2ED;
-  background-color: #5C5CE8;
-  box-shadow: 2px 2px 2px #363732;
+  align-self: center;
+  display: inline;
+  background-color: #a2836e;
+  box-shadow: 2px 2px 2px #674d3c;
 }
 
 #ls{
+  color: #674d3c;
   width: 200px;
 }
 /*For curremt location button*/
 #cl{
-  cursor: pointer;
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+    background:#674d3c;
+    background-color:#d9ad7c;
+    border-radius:6px;
+    border:1px solid #a2836e;
+    display:inline-block;
+    cursor:pointer;
+    
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #674d3c;
+  }
+  #cl:hover {
+    background:#674d3c;
+    background-color:#674d3c;
+  }
+  #cl:active {
+    position:relative;
+    top:1px;
   }
 
-/*For "Within:" label*/
-#label{
-  color: #EFF2ED;
-}
+  
+
 /*For distance radius menu*/
 #dis{
+  color:#674d3c;
   cursor: pointer;
+}
+option{
+  color: black;
+}
+
+#dis-content{
+  color: black;
 }
 /* For find gyms button */
 #find{
-  cursor: pointer;
+  box-shadow:inset 0px 1px 0px 0px #674d3c;
+  background:#674d3c;
+  background-color:#d9ad7c;
+  border-radius:6px;
+  border:1px solid #a2836e;
+  display:inline-block;
+  cursor:pointer;
+  
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #674d3c;
+}
+#find:hover {
+  background:#674d3c;
+  background-color: #674d3c;
+}
+#find:active {
+  position:relative;
+  top:1px;
 }
 
 #map{
   margin: 0px;
-  grid-area: map;
-  border: 1px solid red;
-  padding: 100px;
-  align-items: center;    
+  height: 100%;
+  border: 10px solid #a2836e;
+  grid-area: map;    
 }
 
 nav{
+  text-align: center;
+  align-items: center;
   grid-area: nav;
-  color: #EFF2ED;
-  background-color: #5C5CE8;
+  display: block;
+  background-color: #a2836e;
 }
-#links{
+p{
+  display: inline;
+}
+ul{
+  display: block;
+}
+li {
   list-style-type: none;
-  justify-content: left;
+  float: left;
   padding: 5px;
 }
-.link a{
-  display: block;
-  width: 1fr;
+li a{
+  display:block;
   padding: 8px 16px;
-  color: #EFF2ED;
+  background-color: #d9ad7c;
 }
-.link a:hover{
-  display: block;
-  background-color: #66C3FF;
-  width: 1fr;
+li a:hover{
+  background: #674d3c;
+  background-color:#674d3c;
   padding: 8px 16px;
 }
 
 #gym-output{
   overflow-y: scroll;
   grid-area: table;
-  color: #EFF2ED;
-  background-color: #5C5CE8;
-  box-shadow: 3px 3px 3px #363732;
+  
+  background-color: #a2836e;
+  box-shadow: 3px 3px 3px #674d3c;
   }
-#gym-output p:nth-child(even){
-  background-color: #3A3AF2;
-}
+
 #gym-output p:hover{
-  background-color: #66C3FF;
+  background:674d3c;
+  background-color:#a2836e
 }
   
 footer{
   grid-area: foot;
 
   text-align: center;
-  color: #EFF2ED;
-  background-color: #5C5CE8;
-  box-shadow: 3px 3px 3px #363732;
+  
+  background-color: #a2836e;
+  box-shadow: 3px 3px 3px #674d3c;
+}
+
+.pac-matched{
+  color: black;
 }
