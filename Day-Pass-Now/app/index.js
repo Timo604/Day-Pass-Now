@@ -16,6 +16,7 @@ function findGyms(){
  var location;
  var map, infoWindow;
  var service;
+ initMap();
 
 
  var data;
@@ -39,21 +40,26 @@ function findGyms(){
  //event listener on find gyms button
  findGymBtn.addEventListener('click', async function(){
     console.log('find button clicked');
-    var radius = document.getElementById("dis").value * 1609.34; //approximate miles to meters conversion
+    var radius = parseInt(document.getElementById("dis").value) * 1609.34; //approximate miles to meters conversion
+    console.log(radius);
     //get latitude and longitude object 
-    codeAddress(locationInput.value)
-    .then((location)=> {
+    location = codeAddress(locationInput.value)
+    location.then(loc =>{
+      //the request to be made for places
         var request = {
+        //look for gyms
         query: 'Gyms',
+        //want to get the place_id's to use in detailed search later
         fields: ['place_id'],
-        locationBias: {radius: radius, center: location}};
-        let service = new google.maps.places.PlacesService(document.getElementById("map"));
+        //bias to searches within the specified distance of the input location
+        locationBias: {radius: radius, center: loc}};
+        service = new google.maps.places.PlacesService(document.getElementById('map'));
         service.findPlaceFromQuery(request, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           var places = results;
-            return places;
+            return places
         }
-      });})
+ });})
       .then((places) => {
         var Places = [];
           $.each(places, function(value){
@@ -68,7 +74,9 @@ function findGyms(){
             })
             })
             if(Places != undefined){
+              console.log(Places);
                 return Places;
+                
             }
         }
       ).then((Places) => displayGyms(Places));
@@ -93,6 +101,7 @@ function codeAddress(adr){
     }); 
     }
 
+    /*
     function getCurrentLocation(){
      // Try HTML5 geolocation.
      if (navigator.geolocation) {
@@ -123,6 +132,7 @@ function codeAddress(adr){
       }
       return geocodeLatLng(pos)
     }
+    */
 
     function geocodeLatLng(position) {
         var latlng = position;
@@ -159,7 +169,7 @@ function codeAddress(adr){
     $.each(Pl, function(item){
         name = item.name;
         adr = item.formated_address;
-        website = itme.website
+        website = item.website;
          //create a node
         let a = document.createElement('a');
         //text is the location input value
@@ -190,21 +200,22 @@ function codeAddress(adr){
     //the map, centered on Chicago as default
     map = new google.maps.Map(
         document.getElementById('map'), {
-        zoom: 6, 
+        zoom: 8, 
         center: chicago,
         fullscreenControl: false,
-        streetViewControl: false});
+        streetViewControl: false}); 
     var marker = new google.maps.Marker({position: chicago, map: map});
-
     //add google autocomplete api to locationInput for addresses
     var options = {types: ['address']};
     autocomplete = new google.maps.places.Autocomplete(document.getElementById("ls"), options);
+    
  }
 
 
 
  //on start-up
  findGyms();
+ 
 
 
 

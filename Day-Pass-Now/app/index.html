@@ -2,29 +2,26 @@
 <html>
 <head>
   <link rel = "stylesheet" type = "text/css" href = "index.css"/>
+  <script  src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgflH76YAMNaj1jUZ94laNU1mjzLOUUhg&libraries=places">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
   
-</head>
-
 <body>
 <div class = wrapper>
-    
-<header class="hd">
-<h1>
-Day Pass Now
-</h1>
-<p class="subtitle">
-Enter location & distance to find gyms with day passes 
-</p>
-</header>
+  <img src=wide_gym.jpg></img>
  <form>
+   <div>
   <input id = "ls" value= "Location">
   <input id = "cl" type = button  value = "Current Location">
-  <span id = "label" >Within: </span>
-  <select id = "dis" name="distance">
-    <option>3 miles</option>
-    <option>5 miles</option>
-    <option>10 miles</option>
+    </div>
+    <div>
+  <label for = "dis">Miles from Location:</label>
+  <select id = "dis">
+    <option>3</option>
+    <option>5</option>
+    <option>10</option>
    </select>
+  </div>
    <input id = "find" type = button value = "Find Gyms">
   </form>
   <nav>
@@ -41,12 +38,10 @@ Enter location & distance to find gyms with day passes
   <section id = "gym-output">
   </section>
 <footer>
-  <p.subtitle>Created by Tim Lutz - Last updated: 01 Oct 19</p>
+  <p.subtitle>Created by Tim Lutz - Last updated: 06 Dec 19</p>
 </footer>
 </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 <script src ='index.js'></script>
-<script async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDueDNPRDxUx0PR3fC08vmq0VkTP8mkz14&libraries=places&callback=initMap">
-</script>
+</head>
 </html>
