@@ -2,33 +2,32 @@
 <html>
 <head>
   <link rel = "stylesheet" type = "text/css" href = "index.css"/>
-</head>
-
+  <script  src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDgflH76YAMNaj1jUZ94laNU1mjzLOUUhg&libraries=places">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+  
 <body>
 <div class = wrapper>
-    
-<header class="hd">
-<h1>
-Day Pass Now
-</h1>
-<p class="subtitle">
-Enter location & distance to find gyms with day passes 
-</p>
-</header>
+  <img src=wide_gym.jpg></img>
  <form>
+   <div>
   <input id = "ls" value= "Location">
   <input id = "cl" type = button  value = "Current Location">
-  <span id = "label" >Within: </span>
-  <select id = "dis" name="distance">
-    <option>3 miles</option>
-    <option>5 miles</option>
-    <option>10 miles</option>
+    </div>
+    <div>
+  <label for = "dis">Miles from Location:</label>
+  <select id = "dis">
+    <option>1</option>
+    <option>3</option>
+    <option>5</option>
+    <option>10</option>
    </select>
+  </div>
    <input id = "find" type = button value = "Find Gyms">
   </form>
   <nav>
-    <ul id = "links">
-    <li>Most Common Gyms</li>
+    <p>Most Common Gyms</p>
+    <ul>
     <li class = "link"><a href="https://www.anytimefitness.com/">Anytime Fitness</a></li>
     <li class = "link"><a href="https://www.planetfitness.com/">Planet Fitness</a> </li>
     <li class = "link"><a href="https://www.snapfitness.com/us/">Snap Fitness</a> </li>
@@ -36,15 +35,14 @@ Enter location & distance to find gyms with day passes
     <li class = "link"><a href="https://www.lafitness.com/">LA Fitness</a> </li>
   </ul>
   </nav>
-  <p class ="map">
-  MAP PLACEHOLDER -- google maps API
-  </p>
-  <section class = "gym-output">
+  <div id ="map"></div>
+  <section id = "gym-output">
   </section>
 <footer>
-  <p.subtitle>Created by Tim Lutz - Last updated: 28 Oct 19</p>
+  <p.subtitle>Created by Tim Lutz - Last updated: 10 Dec 19</p>
 </footer>
 </div>
 </body>
 <script src ='index.js'></script>
+</head>
 </html>

@@ -1,21 +1,28 @@
 /* a simple Express server for Node.js*/
 var express = require("express"),
 http = require("http"),
+fetch = require('node-fetch'),
 appTest;
 
+//adding body-parser for JSON parsing
+var bodyParser = require("body-parser");
 
 // create our server - listen on port 3030
 appTest = express();
 http.createServer(appTest).listen(3030);
-
 //set up static file directory - default route for server
-console.log(__dirname)
-appTest.use(express.static(C:\Users\tlutz\Documents\GitHub\Day-Pass-Now\index.html));
+appTest.use(express.static(__dirname + '/app'));
+appTest.use(bodyParser.urlencoded({extended: false}));
 
-// set up routes
-appTest.get("/", function(req, res) {
-    res.send("welcome to day pass now server.");
-    });
-appTest.get("/test", function(req, res) {
-res.send("welcome to the day pass now server.");
+
+
+appTest.post("/places", function(req, res){
+    
+location = requestLocation(req.adr);
+    places = requestPlaces(location, req.rad);
+    detailed = requestDetails(places);
+    res.json(detailed);
+    //console.log(places);
 });
+
+
