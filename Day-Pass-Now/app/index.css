@@ -165,13 +165,16 @@ li a:hover{
   grid-area: table;
   background-color: #3f434a;
   box-shadow: 3px 3px 3px black;
+  display:block;
   }
 
-  #gym-output p{
-    background-color: #454685;
+  #gym-output a{
+    display: block;
+    color: white;
+    background-color: #0948b5;
   }
 
-#gym-output p:hover{
+#gym-output a:hover{
   background-color:#6869b1;
 }
   
